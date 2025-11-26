@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Piyush | Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+        .navbar {
+            background: #111;
+            color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+        }
+        .navbar .logo {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #111, #333);
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            margin-top: 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .hero .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 24px;
+            border-radius: 4px;
+            border: 1px solid #fff;
+            text-decoration: none;
+            color: #111;
+            background: #fff;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .about, .skills, .projects {
+            margin-bottom: 40px;
+        }
+        .about p {
+            text-align: center;
+            line-height: 1.6;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .skill-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 14px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .project-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        .project-card p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+        .social-links a {
+            margin: 0 8px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #555;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+            .navbar {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">P.A BHUTANI</div>
+        <div>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>Hi, I'm Piyush 👋</h1>
+        <p>BBA student | Finance & Stock Market Enthusiast | Learning Web & Financial Modeling</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <div class="container">
+
+        <section id="about" class="about">
+            <h2 class="section-title">About Me</h2>
+            <p>
+                I’m P.A Bhutani (Piyush Arora) from Ludhiana, Punjab, a finance-driven learner passionate about markets, business, and digital creation.
+I come from a strong finance background, specializing in Equity Research, Technical Analysis, and Portfolio Management, backed by my NISM certification.
+
+Beyond markets, I love building digital assets — from clean websites to engaging carousels, helping individuals and businesses improve their online presence.
+I enjoy combining finance, creativity, and technology to offer services like website development, financial guidance, research support, portfolio insights, and market analysis.
+
+My mindset is simple: add value, stay consistent, and keep learning every day.
+If you want clarity, clean execution, and professional results, I’m always open to connect and collaborate.
+
+— P.A Bhutani
+
+            </p>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-list">
+                <div class="skill-badge">Financial Ratios (Learning)</div>
+                <div class="skill-badge">3-Statement Model (Learning)</div>
+                <div class="skill-badge">Excel / Google Sheets</div>
+                <div class="skill-badge">Stock Market advance</div>
+                <div class="skill-badge">HTML & CSS (Beginner)</div>
+<div class="skill-badge">Web Developer (beginner)</div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>My First Website</h3>
+                    <p>
+                        A simple portfolio page built using pure HTML and CSS. 
+                        It was my first step into web development.
+                    </p>
+                </div>
+                <div class="project-card">
+                    <h3>Finance Practice Sheets</h3>
+                    <p>
+                        Google Sheets where I practice ratio analysis, stock tracking, and small models 
+                        to improve my finance skills.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="section-title">Contact</h2>
+            <p style="text-align:center;">
+                Want to connect or collaborate? Reach out to me on LinkedIn or email.
+            </p>
+            <p class="social-links" style="text-align:center;">
+                <a href="https://www.linkedin.com/in/pabhutani/" target="_blank">LinkedIn</a>
+                <a href="mailto:socialmedia4111@gmail.com">Email</a>
+            </p>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        © 2025 Piyush · Built with HTML & CSS
+    </div>
+
+</body>
+</html>

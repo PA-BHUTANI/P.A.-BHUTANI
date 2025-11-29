@@ -3,18 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Piyush | Portfolio</title>
+
+    <!-- SEO + Social -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="P.A Bhutani (Piyush Arora) - BBA student, equity research enthusiast, and finance + web learner. Explore my finance trackers, projects, and portfolio.">
+    <meta name="keywords" content="Piyush Bhutani, P.A Bhutani, portfolio, finance, equity research, stock market, BBA, Ludhiana">
+    <meta name="author" content="P.A Bhutani">
+    <meta property="og:title" content="P.A Bhutani | Finance & Web Portfolio">
+    <meta property="og:description" content="Finance-driven mind from Ludhiana, building equity research systems, trackers, and web projects.">
+    <meta property="og:type" content="website">
+
     <style>
         * {
             box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f5f5;
             color: #222;
         }
+
+        /* LOADER OVERLAY */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 4px solid rgba(148,163,184,0.4);
+            border-top-color: #38bdf8;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* TOP NAVBAR */
         .navbar {
-            background: #111;
+            background: #020617;
             color: #fff;
             padding: 15px 40px;
             display: flex;
@@ -22,60 +66,224 @@
             align-items: center;
             position: sticky;
             top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            transition: padding 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+        .navbar.shrink {
+            padding: 8px 30px;
+            background: #020617ee;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
         }
         .navbar .logo {
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
         .navbar a {
-            color: #fff;
+            color: #e5e7eb;
             text-decoration: none;
-            margin-left: 20px;
             font-size: 14px;
         }
+        .navbar a:hover {
+            color: #38bdf8;
+        }
+        .theme-toggle {
+            border: 1px solid #4b5563;
+            background: #020617;
+            color: #e5e7eb;
+            border-radius: 999px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .theme-toggle:hover {
+            background: #111827;
+            transform: translateY(-1px);
+        }
+
+        /* HERO SECTION */
         .hero {
-            padding: 80px 20px;
+            min-height: 260px;
+            padding: 90px 20px 80px;
             text-align: center;
-            background: linear-gradient(135deg, #111, #333);
             color: #fff;
+            background:
+                radial-gradient(circle at top, rgba(56,189,248,0.22), transparent 55%),
+                linear-gradient(135deg, #020617 0%, #0b1120 45%, #020617 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-position 0.1s ease-out;
         }
         .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-size: 38px;
+            margin-bottom: 8px;
+            letter-spacing: 0.03em;
         }
         .hero p {
             margin-top: 0;
-            font-size: 16px;
+            font-size: 15px;
             opacity: 0.9;
         }
+        #typingText {
+            display: block;
+            margin-top: 6px;
+        }
+
+        /* HERO BUTTONS */
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
         .hero .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 24px;
-            border-radius: 4px;
-            border: 1px solid #fff;
+            padding: 10px 26px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
             text-decoration: none;
-            color: #111;
-            background: #fff;
+            color: #020617;
+            background: #f9fafb;
             font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            transition: all 0.18s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
+        .hero .btn:hover {
+            transform: translateY(-2px);
+            background: #38bdf8;
+            color: #0b1120;
+            border-color: #38bdf8;
+            box-shadow: 0 10px 25px rgba(56,189,248,0.45);
+        }
+        .hero .btn .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background: rgba(255,255,255,0.6);
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .primary-btn {
+            background: #f9fafb;
+            color: #020617;
+        }
+        .secondary-btn {
+            background: transparent;
+            color: #f9fafb;
+            border-color: #9ca3af;
+        }
+        .secondary-btn:hover {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-color: #38bdf8;
+        }
+
+        /* HERO SOCIAL ICONS */
+        .social-hero {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .icon-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            color: #e5e7eb;
+            text-decoration: none;
+            opacity: 0.9;
+        }
+        .icon-link span {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            border: 1px solid #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-bottom: 4px;
+            background: rgba(15,23,42,0.9);
+            transition: transform 0.2s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .icon-link:hover {
+            opacity: 1;
+            color: #38bdf8;
+        }
+        .icon-link:hover span {
+            animation: bounce 0.45s;
+        }
+
+        /* PROFILE PIC */
+        .profile-pic {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .profile-pic img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transition: 0.3s ease;
+        }
+        .profile-pic img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(56,189,248,0.6);
+        }
+
+        /* CONTENT AREA */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 20px 60px;
         }
         h2.section-title {
             text-align: center;
             margin-bottom: 30px;
             font-size: 24px;
         }
-        .about, .skills, .projects {
+        .about, .skills, .projects, .contact, .services, .testimonials {
             margin-bottom: 40px;
         }
         .about p {
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.7;
+            max-width: 720px;
+            margin: 0 auto;
         }
+
+        /* SKILLS */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -85,20 +293,61 @@
         .skill-badge {
             padding: 8px 16px;
             border-radius: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #d4d4d4;
             background: #fff;
             font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+
+        /* SERVICES */
+        .services-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .service-tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        /* PROJECTS */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
         }
         .project-card {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
         .project-card h3 {
             margin-top: 0;
@@ -108,115 +357,591 @@
             font-size: 14px;
             line-height: 1.5;
         }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 13px;
-            color: #666;
+        .project-meta {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #6b7280;
         }
-        .social-links a {
-            margin: 0 8px;
-            text-decoration: none;
+        .featured-project {
+            margin-top: 26px;
+            padding: 18px 20px;
+            border-radius: 8px;
+            background: #eef2ff;
             font-size: 14px;
-            color: #555;
+            line-height: 1.6;
         }
-        .social-links a:hover {
+
+        /* TESTIMONIALS */
+        .testimonials-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .testimonial-author {
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .testimonial-role {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* CONTACT */
+        .contact-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+        .contact-form {
+            max-width: 520px;
+            margin: 0 auto 10px;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        .form-row input,
+        .form-row textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #d4d4d4;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .form-btn {
+            border-radius: 999px;
+            border: none;
+            background: #020617;
+            color: #fff;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .form-btn:hover {
+            background: #111827;
+        }
+        .contact-links {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+        .contact-links a {
+            margin-left: 6px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .contact-links a:hover {
             text-decoration: underline;
         }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        /* FLOATING WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            z-index: 30;
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* DARK MODE */
+        body.dark-mode {
+            background: #020617;
+            color: #e5e7eb;
+        }
+        body.dark-mode .project-card,
+        body.dark-mode .skill-badge,
+        body.dark-mode .service-card,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .featured-project {
+            background: #020617;
+            border-color: #1f2937;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+        body.dark-mode .featured-project {
+            background: #0b1120;
+        }
+        body.dark-mode .footer {
+            background: #020617;
+            color: #9ca3af;
+            border-top-color: #1f2937;
+        }
+        body.dark-mode a {
+            color: #e5e7eb;
+        }
+        body.dark-mode .hero .btn {
+            background: #e5e7eb;
+            color: #020617;
+        }
+        body.dark-mode .hero .btn:hover {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        /* Fade-in hero */
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero * {
+            animation: fadeSlide 0.9s ease-out forwards;
+        }
+
+        /* MOBILE */
         @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 26px;
-            }
             .navbar {
-                padding: 10px 20px;
+                padding: 10px 18px;
+            }
+            .nav-right {
+                gap: 10px;
+            }
+            .hero {
+                padding: 70px 16px 60px;
+            }
+            .hero h1 {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
     <div class="navbar">
         <div class="logo">P.A BHUTANI</div>
-        <div>
+        <div class="nav-right">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
+            <a href="#services">Services</a>
             <a href="#projects">Projects</a>
+            <a href="#testimonials">Clients</a>
+            <a href="#contact">Contact</a>
+            <button id="themeToggle" class="theme-toggle">🌙</button>
         </div>
     </div>
 
     <section class="hero">
+        <div class="profile-pic">
+            <img src="piyush.jpg" alt="Piyush Arora">
+        </div>
         <h1>Hi, I'm Piyush 👋</h1>
         <p>BBA student | Finance & Stock Market Enthusiast | Learning Web & Financial Modeling</p>
-        <a href="#projects" class="btn">View My Work</a>
+        <span id="typingText" style="font-size:16px; opacity:0.85;"></span>
+
+        <div class="hero-actions">
+            <a href="#projects" class="btn primary-btn">View My Work</a>
+            <a href="Piyush_Resume.pdf" class="btn secondary-btn" download>Download Resume</a>
+        </div>
+
+        <div class="social-hero">
+            <a href="https://www.linkedin.com/in/pabhutani" target="_blank" class="icon-link">
+                <span>in</span>
+                <small>LinkedIn</small>
+            </a>
+            <a href="https://github.com/PA-BHUTANI" target="_blank" class="icon-link">
+                <span>GH</span>
+                <small>GitHub</small>
+            </a>
+            <a href="https://www.instagram.com/piyushbhutani7" target="_blank" class="icon-link">
+                <span>IG</span>
+                <small>Instagram</small>
+            </a>
+        </div>
     </section>
 
     <div class="container">
 
-        <section id="about" class="about">
+        <section id="about" class="about reveal">
             <h2 class="section-title">About Me</h2>
             <p>
-                I’m P.A Bhutani (Piyush Arora) from Ludhiana, Punjab, a finance-driven learner passionate about markets, business, and digital creation.
-I come from a strong finance background, specializing in Equity Research, Technical Analysis, and Portfolio Management, backed by my NISM certification.
-
-Beyond markets, I love building digital assets — from clean websites to engaging carousels, helping individuals and businesses improve their online presence.
-I enjoy combining finance, creativity, and technology to offer services like website development, financial guidance, research support, portfolio insights, and market analysis.
-
-My mindset is simple: add value, stay consistent, and keep learning every day.
-If you want clarity, clean execution, and professional results, I’m always open to connect and collaborate.
-
-— P.A Bhutani
-
+                I’m P.A Bhutani (Piyush Arora), a finance-driven mind from Ludhiana, Punjab, India, passionate about markets, business, technology, and wealth-building. I come from a strong finance background, specializing in Equity Research, Portfolio Management, and Strategic Financial Analysis.
+                <br><br>
+                From a very young age, I’ve been fascinated with how money moves, how businesses grow, and how markets react to news, sentiment, and global events. This curiosity pushed me toward becoming an Equity Research Analyst, and today I proudly hold NISM certification, validating my deep interest and professional commitment toward the financial markets.
+                <br><br>
+                I’ve spent countless hours studying balance sheets, decoding price patterns, analyzing market cycles, and observing how fundamentals and technicals combine to create real opportunities. I believe knowledge has value only when it’s used to help others — and this purpose drives the services I offer today.
+                <br><br>
+                Over time, I’ve expanded my learning beyond just markets. I’ve developed a passion for creating digital systems, building clean websites, designing impactful carousels, and helping individuals and businesses boost their digital presence. Combining finance + creativity + technology gives me a unique edge in the modern digital world.
+                <br><br>
+                If you’re someone who values quality, smart work, and transparent communication, then we’re already aligned. Let’s grow, build, and elevate together.
+                <br><br>— P.A Bhutani
             </p>
         </section>
 
-        <section id="skills" class="skills">
+        <section id="skills" class="skills reveal">
             <h2 class="section-title">Skills</h2>
             <div class="skills-list">
                 <div class="skill-badge">Financial Ratios (Learning)</div>
                 <div class="skill-badge">3-Statement Model (Learning)</div>
                 <div class="skill-badge">Excel / Google Sheets</div>
-                <div class="skill-badge">Stock Market advance</div>
+                <div class="skill-badge">Stock Market Basics</div>
                 <div class="skill-badge">HTML & CSS (Beginner)</div>
-<div class="skill-badge">Web Developer (beginner)</div>
             </div>
         </section>
 
-        <section id="projects" class="projects">
+        <section id="services" class="services reveal">
+            <h2 class="section-title">How I Can Help</h2>
+            <p class="services-intro">
+                I combine <b>finance + design + web</b> to build clean digital systems – from market trackers to personal brands.
+                These are the core services I currently offer.
+            </p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-tag">Finance + Web</span>
+                    <h3>Portfolio & Personal Brand Websites</h3>
+                    <p>
+                        Modern, fast, and minimalist websites for students, creators, and professionals
+                        who want to look serious in front of clients, recruiters, or investors.
+                    </p>
+                    <p class="project-meta">Includes: hero, projects, contact, basic SEO, animations.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Market Systems</span>
+                    <h3>Google Sheets Finance Dashboards</h3>
+                    <p>
+                        Custom stock tracking sheets, sector watchlists, and ratio trackers with clean
+                        structure and read-only client sharing setup.
+                    </p>
+                    <p class="project-meta">Ideal for: students, traders, small research teams.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Content</span>
+                    <h3>LinkedIn Carousels & Visuals</h3>
+                    <p>
+                        Carousel-style content that explains finance concepts in a simple way and helps
+                        build your authority & audience over time.
+                    </p>
+                    <p class="project-meta">Best for: educators, creators, consultants.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects reveal">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>My First Website</h3>
                     <p>
-                        A simple portfolio page built using pure HTML and CSS. 
-                        It was my first step into web development.
+                        A simple portfolio page built using pure HTML and CSS.
+                        It was my first step into web development and mixing finance with web.
                     </p>
+                    <div class="project-meta">
+                        Stack: HTML, CSS · Focus: structure, layout, basic styling.
+                    </div>
                 </div>
-                <div class="project-card">
+
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSMZGbVAKj4zU22BjhvRBkUfFsch5v81vGhGTqPROirn0ANUDCE8B6ClapkTmEU9hCD2-3jvs1jYBWN/pubhtml?gid=0&single=true"
+                   target="_blank" class="project-card">
                     <h3>Finance Practice Sheets</h3>
                     <p>
-                        Google Sheets where I practice ratio analysis, stock tracking, and small models 
-                        to improve my finance skills.
+                        Read-only Google Sheets dashboard where I track sectors, stocks, ratios,
+                        and build small practice models to sharpen my equity research thinking.
                     </p>
+                    <div class="project-meta">
+                        Setup: protected formulas, public view link, sector-wise structure.
+                    </div>
+                </a>
+            </div>
+
+            <div class="featured-project">
+                <h3>Featured: Finance + Web Portfolio System</h3>
+                <p>
+                    This website itself is a live project – combining my <b>finance journey</b> with
+                    <b>clean frontend work</b>. It includes dark mode, animations, parallax, a live
+                    Google Sheets dashboard link, and a structure that can be reused for clients and
+                    businesses who want a similar presence.
+                </p>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials reveal">
+            <h2 class="section-title">Client Impressions (Preview)</h2>
+            <p class="testimonials-intro">
+                These are example-style testimonials to show how I like to work – with clarity,
+                timelines, and clean communication. Real client feedback will be added as I complete projects.
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    “The portfolio layout was simple, modern, and focused on the right things.
+                    Clear sections, no noise – exactly what a serious student or young professional needs.”
+                    <div class="testimonial-author">R. Sharma</div>
+                    <div class="testimonial-role">Mentor · Equity Research</div>
+                </div>
+                <div class="testimonial-card">
+                    “The Google Sheets tracker made it easier to watch sectors and stocks at a glance.
+                    The structure was the main value – not just the numbers.”
+                    <div class="testimonial-author">A. Verma</div>
+                    <div class="testimonial-role">Market Enthusiast</div>
+                </div>
+                <div class="testimonial-card">
+                    “Communication was honest and simple. Every change was explained in plain language,
+                    which made the whole process very comfortable.”
+                    <div class="testimonial-author">Sample Client</div>
+                    <div class="testimonial-role">Small Business Owner</div>
                 </div>
             </div>
         </section>
 
-        <section class="contact">
+        <section id="contact" class="contact reveal">
             <h2 class="section-title">Contact</h2>
-            <p style="text-align:center;">
-                Want to connect or collaborate? Reach out to me on LinkedIn or email.
+            <p class="contact-intro">
+                Whether you want a <b>clean portfolio</b>, a <b>finance tracker</b>, or just want to
+                connect and discuss markets & projects — drop a message below or reach out directly.
             </p>
-            <p class="social-links" style="text-align:center;">
-                <a href="https://www.linkedin.com/in/pabhutani/" target="_blank">LinkedIn</a>
+
+            <!-- Web3Forms contact form -->
+            <form id="contactForm"
+                  class="contact-form"
+                  action="https://api.web3forms.com/submit"
+                  method="POST">
+
+                <input type="hidden" name="access_key" value="cf7c44cf-a0ad-4d23-a0d8-e1e75de38fe8">
+
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-row">
+                    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn form-btn">Send Message</button>
+            </form>
+
+            <p id="result" style="text-align:center; font-size:13px; margin-top:8px;"></p>
+
+            <div class="contact-links">
+                Or connect directly:
+                <a href="https://www.linkedin.com/in/pabhutani" target="_blank">LinkedIn</a>
                 <a href="mailto:socialmedia4111@gmail.com">Email</a>
-            </p>
+            </div>
         </section>
 
     </div>
 
     <div class="footer">
-        © 2025 Piyush · Built with HTML & CSS
+        © 2025 P.A. BHUTANI · Built with HTML & CSS
     </div>
 
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/917986161698?text=Hi%20Piyush%2C%20I%20saw%20your%20portfolio%20website."
+       class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        💬
+    </a>
+
+    <script>
+    // LOADER + THEME INIT
+    window.addEventListener('load', function () {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.classList.add('hide');
+            setTimeout(() => loader.style.display = 'none', 300);
+        }
+
+        // Apply saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const toggle = document.getElementById('themeToggle');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            if (toggle) toggle.textContent = '☀️';
+        }
+    });
+
+    // NAVBAR SHRINK ON SCROLL
+    window.addEventListener('scroll', function () {
+        const nav = document.querySelector('.navbar');
+        if (!nav) return;
+        if (window.scrollY > 20) {
+            nav.classList.add('shrink');
+        } else {
+            nav.classList.remove('shrink');
+        }
+    });
+
+    // BUTTON RIPPLE (all hero buttons)
+    const heroButtons = document.querySelectorAll('.hero .btn');
+    heroButtons.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            const rect = this.getBoundingClientRect();
+            const circle = document.createElement('span');
+            const diameter = Math.max(rect.width, rect.height);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple');
+
+            const oldRipple = this.querySelector('.ripple');
+            if (oldRipple) oldRipple.remove();
+
+            this.appendChild(circle);
+        });
+    });
+
+    // SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // 3D TILT EFFECT
+    const cards = document.querySelectorAll(".project-card");
+    cards.forEach(card => {
+        card.addEventListener("mousemove", e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const xAxis = (rect.width / 2 - x) / 20;
+            const yAxis = (y - rect.height / 2) / 20;
+
+            card.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = `rotateX(0) rotateY(0)`;
+        });
+    });
+
+    // THEME TOGGLE CLICK
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            const isDark = document.body.classList.toggle('dark-mode');
+            this.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
+
+    // PARALLAX BACKGROUND EFFECT
+    const hero = document.querySelector(".hero");
+    if (hero) {
+        hero.addEventListener("mousemove", (e) => {
+            const x = (e.clientX / window.innerWidth) * 20;
+            const y = (e.clientY / window.innerHeight) * 20;
+            hero.style.backgroundPosition = `${50 - x}% ${50 - y}%`;
+        });
+    }
+
+    // TYPING ANIMATION
+    const roles = [
+        "Finance Student",
+        "Equity Research Enthusiast",
+        "Web & Dashboard Learner",
+        "Google Sheets Builder",
+        "Portfolio Creator",
+        "Technical Analyst (Learning)"
+    ];
+
+    let i = 0, j = 0, deleting = false;
+    const typingText = document.getElementById("typingText");
+
+    function typeEffect() {
+        if (!typingText) return;
+
+        let current = roles[i];
+        typingText.textContent = deleting
+            ? current.slice(0, --j)
+            : current.slice(0, ++j);
+
+        if (!deleting && j === current.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1200);
+        }
+        else if (deleting && j === 0) {
+            deleting = false;
+            i = (i + 1) % roles.length;
+            setTimeout(typeEffect, 200);
+        }
+        else {
+            setTimeout(typeEffect, deleting ? 60 : 80);
+        }
+    }
+    typeEffect();
+
+    // WEB3FORMS CONTACT SUBMIT
+    const contactForm = document.getElementById("contactForm");
+    const resultBox = document.getElementById("result");
+
+    if (contactForm && resultBox) {
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            resultBox.textContent = "Sending message...";
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: new FormData(contactForm),
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (response.ok) {
+                    resultBox.textContent = "Message sent successfully ✅";
+                    contactForm.reset();
+                } else {
+                    resultBox.textContent = "Something went wrong. Please try again.";
+                }
+            } catch (err) {
+                resultBox.textContent = "Network error. Please try again.";
+            }
+        });
+    }
+    </script>
 </body>
 </html>
